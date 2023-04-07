@@ -31,6 +31,18 @@ app.post('/sign-up', (req, res) => {
 app.post('/tweets', (req, res) => {
     const { username, tweet } = req.body;
 
+    const existe = false;
+
+    for (i = 0; i < users.length; i++) {
+        if (users.username === username) {
+            existe = true;
+        }
+    }
+
+    if (!existe) {
+        return res.send("UNAUTHORIZED")
+    }
+
     const newTweet = {
         id: tweets.length + 1,
         username,
