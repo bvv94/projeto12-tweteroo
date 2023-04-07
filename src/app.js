@@ -39,6 +39,9 @@ app.post('/tweets', (req, res) => {
     if (!username || !tweet) {
         return res.status(400).send("Todos os campos são obrigatórios!")
     }
+    if (typeof (username) !== 'string' || typeof (tweet) !== 'string') {
+        return res.status(400).send("Todos os campos são obrigatórios!")
+    }
 
     const existe = users.find((user) => {
         return user.username === username;
@@ -79,8 +82,8 @@ app.get('/tweets', (req, res) => {
         res.status(200).send(tweets);
         return
     }
-    else{
-        for(let i=0; i<10; i++){
+    else {
+        for (let i = 0; i < 10; i++) {
             res.send(tweets[i]);
         }
         return
