@@ -21,7 +21,7 @@ app.post('/sign-up', (req, res) => {
         return
     }
 
-    if (typeof (username) !== 'string' || typeof (avatar) !== 'string') {
+    if (typeof (username) !== 'string' || typeof (avatar) !== 'string' || isNaN(!username) || isNaN(!avatar)) {
         return res.status(400).send("Todos os campos são obrigatórios!")
     }
 
@@ -39,11 +39,12 @@ app.post('/sign-up', (req, res) => {
 
 app.post('/tweets', (req, res) => {
     const { username, tweet } = req.body;
+    const limit = parseInt(req.query.limit)
 
     if (!username || !tweet) {
         return res.status(400).send("Todos os campos são obrigatórios!")
     }
-    if (typeof (username) !== 'string' || typeof (tweet) !== 'string') {
+    if (typeof (username) !== 'string' || typeof (tweet) !== 'string' || isNaN(!username) || isNaN(!tweet)) {
         return res.status(400).send("Todos os campos são obrigatórios!")
     }
 
