@@ -16,9 +16,9 @@ const tweets = [];
 app.post('/sign-up', (req, res) => {
     const { username, avatar } = req.body;
 
-    if (!username || !avatar || (typeof (username) === 'string') || (typeof (avatar) === 'string')) {
-        return res.status(400).send("Todos os campos são obrigatórios!")
-    }
+    // if (!username || !avatar || (typeof (username) === 'string') || (typeof (avatar) === 'string')) {
+    //     return res.status(400).send("Todos os campos são obrigatórios!")
+    // }
 
     const newUser = {
         id: users.length + 1,
@@ -36,9 +36,9 @@ app.post('/tweets', (req, res) => {
     const { username, tweet } = req.body;
     const existe = false;
 
-    if (!username || !tweet || (typeof (username) === 'string') || (typeof (tweet) === 'string')) {
-        return res.status(400).send("Todos os campos são obrigatórios!")
-    }
+    // if (!username || !tweet || (typeof (username) === 'string') || (typeof (tweet) === 'string')) {
+    //     return res.status(400).send("Todos os campos são obrigatórios!")
+    // }
 
     for (i = 0; i < users.length; i++) {
         if (users.username === username) {
