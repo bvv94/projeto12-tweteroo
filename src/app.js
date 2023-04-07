@@ -48,9 +48,22 @@ app.post('/tweets', (req, res) => {
         return res.send("UNAUTHORIZED")
     }
 
+    console.log(`${users[0].avatar} linha 51`)
+    // console.log(users)
+
+    const addAvatar = users.find((user) => {
+        if (user.username === username) {
+            console.log(`Linha 56: ${user.avatar}`)
+            return true;
+        }
+    })
+    console.log(`${addAvatar} linha 61`)
+    const avatar = addAvatar ? addAvatar.avatar : '';
+
     const newTweet = {
         id: tweets.length + 1,
         username,
+        avatar,
         tweet,
         views: 0,
     }
@@ -62,7 +75,17 @@ app.post('/tweets', (req, res) => {
 
 app.get('/tweets', (req, res) => {
 
-    res.status(200).send(tweets);
+    if (users.length < 10) {
+        res.status(200).send(tweets);
+        return
+    }
+    else{
+        for(let i=0; i<10; i++){
+            res.send(tweets[i]);
+        }
+        return
+    }
+
 })
 
 
