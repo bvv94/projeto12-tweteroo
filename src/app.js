@@ -83,16 +83,8 @@ app.post('/tweets', (req, res) => {
 
 app.get('/tweets', (req, res) => {
 
-    if (users.length < 10) {
-        res.status(200).send(tweets);
-        return
-    }
-    else {
-        for (let i = 0; i < 10; i++) {
-            res.send(tweets[i]);
-        }
-        return
-    }
+    const show = tweets.slice(-10);
+    res.status(200).send(show);
 
 })
 
